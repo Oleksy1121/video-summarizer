@@ -1,7 +1,7 @@
 TRANSCRIPTION_MODEL = 'whisper-1'
 SUMMARIZE_MODEL = "gpt-4o-mini"
 
-VIDEO_URL = "https://www.youtube.com/watch?v=toJfrYinzJ8"
+VIDEO_URL = "https://www.youtube.com/watch?v=TMkoX1kfyDs&t"
 AUDIO_FILENAME = 'data/audio/audio_from_wideo.mp3'
 
 SYSTEM_MESSAGE = "You are an assistant that summarizes YouTube videos by highlighting the most important points and events, in clear Markdown format."
