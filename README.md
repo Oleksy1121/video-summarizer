@@ -18,6 +18,10 @@ Screenshot of the Gradio interface:
 
 ![Gradio Interface](/attachments/gradio.png)
 
+---
+## 🌐 Live Demo
+You can try the deployed version of the project here:  
+**[https://marcin-oleszczyk.pl/video-summarizer](https://marcin-oleszczyk.pl/video-summarizer)**
 
 ---
 ## Project Structure
@@ -31,6 +35,7 @@ video_summarizer/
   download.py      # audio downloading
   transcribe.py    # audio transcription
   summarize.py     # text summarization
+  utils.pu         # helpers functions like validation
 ```
 
 ---
@@ -45,7 +50,6 @@ video_summarizer/
 
 ---
 ## Next Steps
-- Deployment as a web application 
 - Export summaries to `.md` / `.pdf`
 - Option to choose summarization models
 - Multi-language transcription support
