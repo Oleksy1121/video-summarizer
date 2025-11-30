@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Data and temporary files
+data/
+*.mp3
+*.wav
+*.mp4
+
+# Environment files (will be passed via docker-compose or -e flag)
+.env
+.env.local
+.env.*.local
+
+# Documentation
+*.md
+docs/
+
+# Notebooks
+notebooks/
+*.ipynb
+
+# Tests
+tests/
+test_*/
