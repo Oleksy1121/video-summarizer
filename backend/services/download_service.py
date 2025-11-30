@@ -4,9 +4,10 @@ import os
 import subprocess
 import logging
 from backend.core.config import settings
-
+from backend.utils.secret_manager import get_secret_file_path
 
 logger = logging.getLogger(__name__)
+cookies_path = get_secret_file_path(project_id="ml-portfolio-xyz123", secret_id="YT_COOCKIES")
 
 
 def download_audio(url: str, audio_filename: str = None) -> None:
@@ -36,6 +37,7 @@ def download_audio(url: str, audio_filename: str = None) -> None:
 
     result = subprocess.run([
         "yt-dlp",
+        "--cookies", cookies_path,
         "-x",                        # only audio
         "--audio-format", "mp3",     # convert to mp3
         "--force-overwrites",        # force override file

@@ -27,10 +27,17 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+# Origins
+origins = [
+    "https://frontend-202366413188.europe-west4.run.app",
+    "https://marcin-oleszczyk.pl",
+    "http://localhost:3000",
+]
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=origins,  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
