@@ -1,55 +1,96 @@
 # Video Summarizer
-An application for automatically summarizing YouTube videos in **Markdown format**.  
-The project was built for educational purposes and evolved through two main versions:
-1. **[Colab notebook – LLaMA 3.1 (quantized) + OpenAI Whisper](/notebooks/colab_video_summarizer_llama.ipynb)** – testing transcription and summarization with a local model.
-2.  **[Jupyter notebook – GPT-4o-mini + OpenAI Whisper](/notebooks/jupyter_video_summarizer_gradio.ipynb)** - lightweight, cost-effective, and further developed as the final solution.
+
+An application for automatically summarizing YouTube videos in **Markdown format** using **OpenAI Whisper** and **GPT-4o-mini**.
 
 ---
+
+## 🚀 Live Demo
+
+**Frontend:** [https://marcin-oleszczyk.pl/video-summarizer](https://marcin-oleszczyk.pl/video-summarizer)  
+**API Docs:** [https://video-summarizer-backend-202366413188.europe-west4.run.app/docs](https://video-summarizer-backend-202366413188.europe-west4.run.app/docs)
+
+---
+
 ## Features
-- Downloading audio from YouTube videos (**yt-dlp**)
-- Transcribing audio with **Whisper-1**
-- Generating summaries in structured **Markdown** with **GPT-4o-mini**
-- Simple **Gradio** interface for testing
-- Modular architecture with a dedicated **REST API (FastAPI)**
+
+- Audio extraction from YouTube videos (**yt-dlp**)
+- Transcription with **OpenAI Whisper-1**
+- Summarization with **GPT-4o-mini** in structured Markdown
+- REST API built with **FastAPI**
+- Rate limiting (2 requests per 4 hours)
+- Dockerized deployment on **GCP Cloud Run**
 
 ---
-## Preview
-Screenshot of the Gradio interface:
 
-![Gradio Interface](/attachments/gradio.png)
-
----
-## 🌐 Live Demo
-You can try the deployed version of the project here:  
-**[https://marcin-oleszczyk.pl/video-summarizer](https://marcin-oleszczyk.pl/video-summarizer)**
-
----
 ## Project Structure
+```bash
+backend/
+├── api/          # API routes and dependencies
+├── core/         # Configuration
+├── models/       # Pydantic schemas
+├── services/     # Business logic (download, transcribe, summarize)
+├── utils/        # Validators and helpers
+└── main.py       # FastAPI entry point
 
-``` bash
-notebooks/
-  colab_video_summarizer_llama.ipynb     # initial experiments with LLaMA
-  jupyter_video_summarizer_gradio.ipynb  # prototype with Gradio and OpenAI
-video_summarizer/
-  constants.py     # model and prompt configuration
-  download.py      # audio downloading
-  transcribe.py    # audio transcription
-  summarize.py     # text summarization
-  utils.pu         # helpers functions like validation
+notebooks/        # Initial prototypes
+Dockerfile        # Backend containerization
+docker-compose.yml
+deploy.sh         # GCP deployment script
 ```
 
 ---
+
 ## Technologies
-- **Python, Jupyter/Colab**
-- **yt-dlp** – audio extraction
-- **OpenAI Whisper (whisper-1)** – transcription
-- **GPT-4o-mini** – summarization
-- **bitsandbytes** – LLaMA quantization (experimental)
-- **Gradio** – UI prototype
-- **FastAPI** – REST API
+
+**Backend:** Python 3.12, FastAPI, yt-dlp, OpenAI (Whisper-1, GPT-4o-mini)  
+**Infrastructure:** Docker, GCP Cloud Run, Secret Manager  
+**Development:** Jupyter, Gradio (prototyping)
 
 ---
-## Next Steps
-- Export summaries to `.md` / `.pdf`
-- Option to choose summarization models
-- Multi-language transcription support
+
+## Getting Started
+
+### Local Development
+```bash
+# Clone repository
+git clone https://github.com/Oleksy1121/video-summarizer.git
+cd video-summarizer
+
+# Create .env file
+echo "OPENAI_API_KEY=your_key_here" > .env
+
+# Run with Docker
+docker-compose up --build
+
+# Access API at http://localhost:8000/docs
+```
+
+### Deploy to GCP
+```bash
+./deploy.sh
+```
+
+---
+
+## API Usage
+
+**Endpoint:** `POST /api/v1/summarize`
+```json
+{
+  "url": "https://www.youtube.com/watch?v=VIDEO_ID"
+}
+```
+
+**Response:**
+```json
+{
+  "summary": "# Video Title\n\n## Summary..."
+}
+```
+
+---
+
+## Author
+
+**Marcin Oleszczyk**  
+Portfolio: [marcin-oleszczyk.pl](https://marcin-oleszczyk.pl) | GitHub: [@Oleksy1121](https://github.com/Oleksy1121)
